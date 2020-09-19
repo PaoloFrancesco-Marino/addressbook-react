@@ -18,7 +18,7 @@ export default class loginComponent extends Component {
                     <h2 class="title mb-4">Address Book</h2>
                     <input  class="form-control mb-4" placeholder="Nome Utente" type="email" name='email' value={this.state.email} onChange={this.gestMod}/>
                     <input  class="form-control mb-4" placeholder="Password" type="password" name='password' value={this.state.password} onChange={this.gestMod}/> 
-                    <button class="btn btn-primary" onClick={this.login}>Accedi</button>
+                    <button class="btn btn-primary btn-submit" onClick={this.login}>Accedi</button>
 
                     <LoggedInMsg isLogged={this.state.isLogged}></LoggedInMsg>
                     <LoggedInFailMsg isNoLogged={this.state.noLogged}></LoggedInFailMsg>
@@ -77,7 +77,7 @@ function LoggedInFailMsg(props) {
     if(props.isNoLogged) {
         return (
             <div>
-                <h5 class="mt-4 text-danger">Connessione non eseguita</h5>
+                <div class="mt-4 alert alert-danger" role="alert">Email e/o Password sono errate!</div>
             </div>
         )
     }

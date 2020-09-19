@@ -21,3 +21,12 @@
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.4);
 }
 
+.btn-submit
+{
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 0.5rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}

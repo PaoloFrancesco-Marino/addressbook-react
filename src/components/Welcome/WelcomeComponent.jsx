@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './WelcomeComponent.css';
 import HeaderComponent from '../Header/HeaderComponent';
+import ContactList from '../ContactList/ContactList';
 
 export default class WelcomeComponent extends Component {
 
@@ -11,6 +12,7 @@ export default class WelcomeComponent extends Component {
                     <h2 className="mb-4">Bentornato {this.props.match.params.userid}</h2>
                     <div className="box-2">
                         <HeaderComponent/>
+                        <ContactList/>
                     </div>
                 </div>
             </div>

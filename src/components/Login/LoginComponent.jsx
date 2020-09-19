@@ -49,7 +49,6 @@ export default class loginComponent extends Component {
                 }
             )
         }
-
     }
 
     gestMod = (event) => {

@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import './ContactList.css';
 
 import { FaUserCircle } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 
-let contacts = [
-    {firstName: "Francesco", lastName: "Rossi", phone: "3334567111"},
-    {firstName: "Alice", lastName: "Monterosso", phone: "3334566793"},
-    {firstName: "Marco", lastName: "Andreoli",  phone: "3333446776"},
-    {firstName: "Paolo", lastName: "Giustini", phone: "3343434335"},
-    {firstName: "Giacomo", lastName: "Lentini", phone: "3343434335"},
-    {firstName: "Romeo", lastName: "Lauriola", phone: "3343434335"},
-    {firstName: "Giovanni", lastName: "Torregrossa", phone: "3343434335"},
-    {firstName: "Francesco", lastName: "Metalli", phone: "3343434335"},
-    {firstName: "Alfredo", lastName: "Gadau", phone: "3343434335"},
-];
+
 
 export default class ContactList extends Component {
-    constructor() {
-        super();
-        this.state = {
-        contacts: contacts
-        }
+    state = { 
+        contacts: [
+        {firstName: "Francesco", lastName: "Rossi", phone: "3334567111"},
+        {firstName: "Alice", lastName: "Monterosso", phone: "3334566793"},
+        {firstName: "Marco", lastName: "Andreoli",  phone: "3333446776"},
+        {firstName: "Paolo", lastName: "Giustini", phone: "3336789876"},
+        {firstName: "Giacomo", lastName: "Lentini", phone: "3459876543"},
+        {firstName: "Romeo", lastName: "Lauriola", phone: "3387656413"},
+        {firstName: "Giovanni", lastName: "Torregrossa", phone: "3498765098"},
+        {firstName: "Giulia", lastName: "Metalli", phone: "3487786132"},
+        {firstName: "Alfredo", lastName: "Gadau", phone: "3380987674"},
+        ],
+
+        search: ''
     }
 
     addContact(person) {
@@ -33,67 +33,56 @@ export default class ContactList extends Component {
         })
     }
 
-    render() {
-        return (
-        <div>
-            <ContactsResult contacts={this.state.contacts} />
-            <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />
-        </div>
-        )
-    }
-}
-
-class ContactsResult extends Component {
-    constructor() {
-            super();
-            this.state = {
-            search: ''
-            }
-        }
-        
-        updateSearch(event) {
+    updateSearch(event) {
         this.setState({
         search: event.target.value
         })
     }
 
-    render() {
-    let filteredContacts = this.props.contacts.filter(
-        (person) => {
-            var fullName = person.firstName.toLowerCase() + person.lastName.toLowerCase()
-            return fullName.indexOf(this.state.search.toLowerCase()) !== -1;
-        }
-    );
+    deleteContact = (indexContact) => {
+        console.log('premuto tasto elimina' + indexContact);
 
-    return (
-        <div className="contact-list-component">
-                <div className="search">
-                    <input type="text" class="form-control" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search contact"/>
-                <div/>
-            </div>
-            <ul className="list-group list-group-flush overflow-auto">
-                {filteredContacts.map((person)=> {
-                    return <Person person={person} />
-                })}
-            </ul>
-        </div>
-
-        )
+        const newContacts = [...this.state.contacts];
+        newContacts.splice(indexContact, 1);
+        this.setState({contacts: newContacts});
     }
-}
 
-class Person extends Component {
+    
+
     render() {
+
+        let filteredContacts = this.state.contacts.filter(
+            (contacts) => {
+                let fullName = contacts.firstName.toLowerCase() + contacts.lastName.toLowerCase()
+                return fullName.indexOf(this.state.search.toLowerCase()) !== -1;
+            }
+        );
         return (
-        <li className="list-group-item d-flex align-items-center">
-            <div className="user d-flex align-items-center">
-                <FaUserCircle className="default-ico-user"/>   
+            <div>
+                <div className="contact-list-component">
+                    <div className="search">
+                        <input type="text" className="form-control" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search contact"/>
+                    <div/>
+                </div>
+                    <ul className="list-group list-group-flush overflow-auto">
+                        {filteredContacts.map((contacts, index)=> 
+                            <li key={contacts.phone} className="list-group-item d-flex align-items-center">
+                                <div className="user d-flex align-items-center">
+                                    <FaUserCircle className="default-ico-user"/>   
+                                </div>
+                                <div className="contact-user d-flex align-items-center justify-content-between w-100">
+                                    <h5 className="m-0">{contacts.firstName} {contacts.lastName}</h5>
+                                    <h5 className="m-0">+{contacts.phone}</h5>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <TiDelete className="default-ico-user delete ml-3" onClick={() => this.deleteContact(index)}/>   
+                                </div>
+                            </li>
+                        )}
+                    </ul>
+                </div>
+                <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />
             </div>
-            <div className="contact-user d-flex align-items-center justify-content-between w-100">
-                <h5 className="m-0">{this.props.person.firstName} {this.props.person.lastName}</h5>
-                <h5 className="m-0">+{this.props.person.phone}</h5>
-            </div>
-        </li>
         )
     }
 }
@@ -130,7 +119,7 @@ class AddContact extends Component {
                         <input className="form-control" placeholder="name" type="text" name="firstName" value={this.props.firstname} onChange={this.handleChange.bind(this)}/>
                         <input className="form-control" placeholder="lastname" type="text" name="lastName" value={this.props.lastname} onChange={this.handleChange.bind(this)} />
                         <input className="form-control" placeholder="phone" type="text" name="phone" value={this.props.phone} onChange={this.handleChange.bind(this)}/>
-                        <button type="btn btn-primary">Aggiugi Contatto</button>
+                        <button className="btn btn-primary">Aggiugi Contatto</button>
                     </div>
                 </form>
             </div>

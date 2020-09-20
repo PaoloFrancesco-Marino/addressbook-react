@@ -5,7 +5,7 @@ import AddressBookApp from './components/AddressBookApp';
 function App() {
   return (
     <div className="App">
-      <section class="App_bg">
+      <section className="App_bg">
         <AddressBookApp></AddressBookApp>
       </section>
     </div>

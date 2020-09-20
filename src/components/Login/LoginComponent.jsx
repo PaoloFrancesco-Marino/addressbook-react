@@ -13,12 +13,12 @@ export default class loginComponent extends Component {
 
     render() {
         return (
-            <div class="wrapper">
-                <div class="box">
-                    <h2 class="title mb-4">Address Book</h2>
-                    <input  class="form-control mb-4" placeholder="Nome Utente" type="email" name='email' value={this.state.email} onChange={this.gestMod}/>
-                    <input  class="form-control mb-4" placeholder="Password" type="password" name='password' value={this.state.password} onChange={this.gestMod}/> 
-                    <button class="btn btn-primary btn-submit" onClick={this.login}>Accedi</button>
+            <div className="wrapper">
+                <div className="box">
+                    <h2 className="title mb-4">Address Book</h2>
+                    <input  className="form-control mb-4" placeholder="Nome Utente" type="email" name='email' value={this.state.email} onChange={this.gestMod}/>
+                    <input  className="form-control mb-4" placeholder="Password" type="password" name='password' value={this.state.password} onChange={this.gestMod}/> 
+                    <button className="btn btn-primary btn-submit" onClick={this.login}>Accedi</button>
 
                     <LoggedInMsg isLogged={this.state.isLogged}></LoggedInMsg>
                     <LoggedInFailMsg isNoLogged={this.state.noLogged}></LoggedInFailMsg>
@@ -29,9 +29,6 @@ export default class loginComponent extends Component {
 
 
     login = () => {
-        console.log(this.state.userid);
-        console.log(this.state.password);
-
         if (this.state.email === 'paolo@libero.it' && this.state.password === '1234') {
             console.log('sei loggato');
             this.props.history.push(`/welcome/${this.state.userid}`);
@@ -64,7 +61,7 @@ function LoggedInMsg(props) {
     if(props.isLogged) {
         return (
             <div>
-                <h5 class="mt-4 text-success">Connessione eseguita</h5>
+                <h5 className="mt-4 text-success">Connessione eseguita</h5>
             </div>
         )
     }
@@ -76,7 +73,7 @@ function LoggedInFailMsg(props) {
     if(props.isNoLogged) {
         return (
             <div>
-                <div class="mt-4 alert alert-danger" role="alert">Email e/o Password sono errate!</div>
+                <div className="mt-4 alert alert-danger" role="alert">Email e/o Password sono errate!</div>
             </div>
         )
     }

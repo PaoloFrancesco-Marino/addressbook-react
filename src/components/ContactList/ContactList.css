@@ -14,3 +14,11 @@
 .default-ico-user {
     font-size: 25px;
 }
+
+.delete {
+    font-size: 35px; 
+}
+.delete:hover {
+    cursor: pointer;
+    color: red;
+}

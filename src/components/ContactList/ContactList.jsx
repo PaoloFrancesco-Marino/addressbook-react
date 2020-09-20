@@ -3,6 +3,7 @@ import './ContactList.css';
 
 import { FaUserCircle } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
+import { FiUserPlus } from "react-icons/fi";
 
 
 
@@ -20,7 +21,13 @@ export default class ContactList extends Component {
         {firstName: "Alfredo", lastName: "Gadau", phone: "3380987674"},
         ],
 
-        search: ''
+        search: '',
+        show: false
+    }
+
+    toogleShow = () => {
+        const {show} = this.state;
+        this.setState( { show: !show })
     }
 
     addContact(person) {
@@ -58,36 +65,39 @@ export default class ContactList extends Component {
             }
         );
         return (
-            <div>
+            <div className="position-relative">
                 <div className="contact-list-component">
                     <div className="search">
-                        <input type="text" className="form-control" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search contact"/>
+                        <input type="text" className="form-control mb-3" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search contact"/>
+                        <h4>Contatti</h4>
                     <div/>
-                </div>
-                    <ul className="list-group list-group-flush overflow-auto">
-                        {filteredContacts.map((contacts, index)=> 
-                            <li key={contacts.phone} className="list-group-item d-flex align-items-center">
-                                <div className="user d-flex align-items-center">
-                                    <FaUserCircle className="default-ico-user"/>   
-                                </div>
-                                <div className="contact-user d-flex align-items-center justify-content-between w-100">
-                                    <h5 className="m-0">{contacts.firstName} {contacts.lastName}</h5>
-                                    <h5 className="m-0">+{contacts.phone}</h5>
-                                </div>
-                                <div className="d-flex align-items-center">
-                                    <TiDelete className="default-ico-user delete ml-3" onClick={() => this.deleteContact(index)}/>   
-                                </div>
-                            </li>
-                        )}
-                    </ul>
-                </div>
-                <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />
+                    </div>
+                    
+                        <ul className="list-group list-group-flush overflow-auto">
+                            {filteredContacts.map((contacts, index)=> 
+                                <li key={contacts.phone} className="list-group-item d-flex align-items-center list">
+                                    <div className="user d-flex align-items-center">
+                                        <FaUserCircle className="default-ico-user"/>   
+                                    </div>
+                                    <div className="contact-user d-flex align-items-center justify-content-between w-100">
+                                        <h5 className="m-0">{contacts.firstName} {contacts.lastName}</h5>
+                                        <h5 className="m-0">+{contacts.phone}</h5>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <TiDelete className="default-ico-user delete ml-3" onClick={() => this.deleteContact(index)}/>   
+                                    </div>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                <FiUserPlus onClick={this.toogleShow} className="add-contact mt-4"/>
+                {this.state.show && <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />}
             </div>
         )
     }
 }
 
-class AddContact extends Component {
+export class AddContact extends Component {
 
     componentDidMount() {
         this.setState(
@@ -113,13 +123,14 @@ class AddContact extends Component {
 
     render() {
         return (
-            <div className="person-add">
+            <div className="add-contact-form">
+                <h4 className="mb-4">Aggiungi un Contatto</h4>
                 <form className="add-form" onSubmit={this.handleSubmit.bind(this)}>
                     <div>
-                        <input className="form-control" placeholder="name" type="text" name="firstName" value={this.props.firstname} onChange={this.handleChange.bind(this)}/>
-                        <input className="form-control" placeholder="lastname" type="text" name="lastName" value={this.props.lastname} onChange={this.handleChange.bind(this)} />
-                        <input className="form-control" placeholder="phone" type="text" name="phone" value={this.props.phone} onChange={this.handleChange.bind(this)}/>
-                        <button className="btn btn-primary">Aggiugi Contatto</button>
+                        <input className="form-control mb-4" placeholder="name" type="text" name="firstName" value={this.props.firstname} onChange={this.handleChange.bind(this)}/>
+                        <input className="form-control mb-4" placeholder="lastname" type="text" name="lastName" value={this.props.lastname} onChange={this.handleChange.bind(this)} />
+                        <input className="form-control mb-4" placeholder="phone" type="text" name="phone" value={this.props.phone} onChange={this.handleChange.bind(this)}/>
+                        <button className="btn btn-primary">Conferma</button>
                     </div>
                 </form>
             </div>

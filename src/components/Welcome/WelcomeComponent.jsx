@@ -3,6 +3,7 @@ import './WelcomeComponent.css';
 import HeaderComponent from '../Header/HeaderComponent';
 import ContactList from '../ContactList/ContactList';
 
+
 export default class WelcomeComponent extends Component {
 
     render() {

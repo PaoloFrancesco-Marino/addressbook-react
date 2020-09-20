@@ -15,7 +15,7 @@ export default class HeaderComponent extends Component {
                     <img src="/images/profile.jpg" alt="Paolo"/>
                 </div>
                 <div className="logout">
-                    <Link to="/">
+                    <Link to="/logout">
                         <FiLogOut className="nav-icon"/>
                     </Link>
                 </div>

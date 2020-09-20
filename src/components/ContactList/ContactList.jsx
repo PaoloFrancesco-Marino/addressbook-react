@@ -7,7 +7,12 @@ let contacts = [
     {firstName: "Francesco", lastName: "Rossi", phone: "3334567111"},
     {firstName: "Alice", lastName: "Monterosso", phone: "3334566793"},
     {firstName: "Marco", lastName: "Andreoli",  phone: "3333446776"},
-    {firstName: "Paolo", lastName: "Giustini", phone: "3343434335"}
+    {firstName: "Paolo", lastName: "Giustini", phone: "3343434335"},
+    {firstName: "Giacomo", lastName: "Lentini", phone: "3343434335"},
+    {firstName: "Romeo", lastName: "Lauriola", phone: "3343434335"},
+    {firstName: "Giovanni", lastName: "Torregrossa", phone: "3343434335"},
+    {firstName: "Francesco", lastName: "Metalli", phone: "3343434335"},
+    {firstName: "Alfredo", lastName: "Gadau", phone: "3343434335"},
 ];
 
 export default class ContactList extends Component {

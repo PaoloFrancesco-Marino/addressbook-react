@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import './ContactList.css';
-
-import { FaUserCircle } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
-import { FiUserPlus } from "react-icons/fi";
-
-
+import { MdPersonAdd, MdCancel, MdAccountCircle  } from "react-icons/md";
 
 export default class ContactList extends Component {
     state = { 
@@ -71,27 +66,28 @@ export default class ContactList extends Component {
                         <input type="text" className="form-control mb-3" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search contact"/>
                         <h4>Contatti</h4>
                     <div/>
-                    </div>
-                    
-                        <ul className="list-group list-group-flush overflow-auto">
-                            {filteredContacts.map((contacts, index)=> 
-                                <li key={contacts.phone} className="list-group-item d-flex align-items-center list">
-                                    <div className="user d-flex align-items-center">
-                                        <FaUserCircle className="default-ico-user"/>   
-                                    </div>
-                                    <div className="contact-user d-flex align-items-center justify-content-between w-100">
-                                        <h5 className="m-0">{contacts.firstName} {contacts.lastName}</h5>
-                                        <h5 className="m-0">+{contacts.phone}</h5>
-                                    </div>
-                                    <div className="d-flex align-items-center">
-                                        <TiDelete className="default-ico-user delete ml-3" onClick={() => this.deleteContact(index)}/>   
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                <FiUserPlus onClick={this.toogleShow} className="add-contact mt-4"/>
-                {this.state.show && <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />}
+                </div>
+                    <ul className="list-group list-group-flush overflow-auto">
+                        {filteredContacts.map((contacts, index)=> 
+                            <li key={contacts.phone} className="list-group-item d-flex align-items-center list">
+                                <div className="user d-flex align-items-center">
+                                    <MdAccountCircle className="default-ico"/>   
+                                </div>
+                                <div className="contact-user d-flex align-items-center justify-content-between w-100">
+                                    <h5 className="m-0">{contacts.firstName} {contacts.lastName}</h5>
+                                    <h5 className="m-0">+{contacts.phone}</h5>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <MdCancel className="default-ico delete ml-3" onClick={() => this.deleteContact(index)}/>   
+                                </div>
+                            </li>
+                        )}
+                    </ul>
+                </div>
+                <div>
+                    <MdPersonAdd onClick={this.toogleShow} className="add-contact default-ico mt-4 mb-4"/>
+                    {this.state.show && <AddContact contacts={this.state.contacts} addContact={this.addContact.bind(this)} />}
+                </div>
             </div>
         )
     }

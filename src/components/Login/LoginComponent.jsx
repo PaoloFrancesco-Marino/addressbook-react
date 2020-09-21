@@ -14,9 +14,9 @@ export default class loginComponent extends Component {
     render() {
         return (
             <div className="wrapper">
+                <h2 className="title mb-4">Address Book</h2>
                 <div className="box">
-                    <h2 className="title mb-4">Address Book</h2>
-                    <input  className="form-control mb-4" placeholder="Nome Utente" type="email" name='email' value={this.state.email} onChange={this.gestMod}/>
+                    <input  className="form-control mt-4 mb-4" placeholder="Nome Utente" type="email" name='email' value={this.state.email} onChange={this.gestMod}/>
                     <input  className="form-control mb-4" placeholder="Password" type="password" name='password' value={this.state.password} onChange={this.gestMod}/> 
                     <button className="btn btn-primary btn-submit" onClick={this.login}>Accedi</button>
 

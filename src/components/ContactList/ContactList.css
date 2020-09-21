@@ -11,13 +11,11 @@
 .user {
     margin-right: 30px;
 }
-.default-ico-user {
+.default-ico {
     font-size: 25px;
+    color: #404040;
 }
 
-.delete {
-    font-size: 35px; 
-}
 .delete:hover {
     cursor: pointer;
     color: red;
@@ -29,7 +27,7 @@
 }
 
 .add-contact:hover {
-    color: green;
+    color: #20bf55;
 }
 
 .add-contact-form {
